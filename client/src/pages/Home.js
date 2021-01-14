@@ -25,7 +25,6 @@ class Home extends React.Component {
         return ( 
             <>
             <div className="div-sup-home">
-                <h1 className="title-list" >Listado de Posts</h1>
                 <FormCreateNewPost getPosts={this.getPosts} className="form-NewPost" />
             </div>
             <ListGroup className="list">
