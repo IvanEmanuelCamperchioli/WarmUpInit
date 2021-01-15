@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import List from '../components/List';
 import { ListGroup } from 'reactstrap';
-import '../styles/home.css'
 import FormCreateNewPost from '../components/FormCreateNewPost';
 import getPosts from '../services/get'
+import '../styles/home.css'
 
 const Home = () => {
 
     const[posts, setPosts] = useState([])
 
-    useEffect( async () => {
-        const res = await getPosts()
-        setPosts(res.data)
+    useEffect( () => {
+        async function fetchData() {
+            const res = await getPosts()
+            setPosts(res.data)    
+        }
+        fetchData()
     }, [])
+
 
     return ( 
             <>

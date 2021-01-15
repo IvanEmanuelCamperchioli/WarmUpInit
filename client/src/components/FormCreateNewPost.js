@@ -1,42 +1,39 @@
-import React from 'react';
-import {    
+import React, { useState } from 'react';
+import {
     Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
-import axios from 'axios';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormItems from './FormItems';
 import '../styles/home.css'
+import toPost from '../services/post'
 
+const FormCreateNewPost = () => {
 
-class FormCreateNewPost extends React.Component {
+    const [modal, setModal] = useState(false)
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
+    const [disabled, setDisabled] = useState(false)
 
-    state = { 
-        modal: false,
-        title: "",
-        content: "",
-        disabled: false
-    }
-    
-    toggle = () => {
-        this.setState({ 
-            modal: !this.state.modal,
-            disabled: false 
-        });
+    const toggle = () => {
+        setModal(!modal)
+        setDisabled(false)
     }
 
-    getData = (key, eventValue) => {
+    const getData = (key, eventValue) => {
         const property = key
         const value = eventValue
-        this.setState({
-            [property] : value
-        }); 
+        if(property === 'title') {
+            setTitle(value)
+        } else setContent(value)
     }
 
-    notify = () => {
+    const notify = () => {
         toast.dark(
-            <h4 className="toast-text">el post <i>{this.state.title}</i> ha sido creado!</h4>,
-            {   
+            <h4 className="toast-text">
+                el post <i className="i-text" >{title}</i> ha sido creado!
+            </h4>,
+            {
                 transition: Zoom,
                 position: toast.POSITION.BOTTOM_CENTER,
                 hideProgressBar: true,
@@ -45,91 +42,87 @@ class FormCreateNewPost extends React.Component {
         );
     }
 
-    createNewPost = async e => {
+    const createNewPost = async e => {
         e.preventDefault()
-        this.setState({ disabled: !this.state.disabled });
+        setDisabled(!disabled)
 
         // Easy verify
-        const { title, content } = this.state
-        if( title === '' || content === '' ) {
+        if (title === '' || content === '') {
             alert("Hay datos incompletos")
-            this.setState({ disabled: false })
+            setDisabled(false)
         } else {
-            const newPost = { title, content }
+            const newPost = { 
+                title: title, 
+                content: content 
+            }
 
             // Send data through axios request
-            await axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
-            .then( res => {
-                console.log(res)
-                if(res.status === 201) {
-                    this.setState({ modal: !this.state.modal })
-                    this.notify()
-                    this.setState({
-                        title: '', 
-                        content: ''
-                    });
-                }  
-            })
-            .catch(error => {
-                alert('Hubo un problema al intentar crear el post')
-                this.setState({
-                    title: '', 
-                    concept: '', 
-                    amount: 0, 
-                    date: '',
-                    disabled: !this.state.disabled 
+            await toPost(newPost)
+                .then(res => {
+                    if (res.status === 201) {
+                        setModal(!modal)
+                        notify()
+                        setTitle('')
+                        setContent('')
+                    }
+                })
+                .catch(error => {
+                    alert('Hubo un problema al intentar crear el post')
+                    setTitle('')
+                    setContent('')
+                    setDisabled(!disabled)
+                    toggle()
                 });
-                this.toggle()
-            });
         };
     }
 
-    render() { 
 
-        return ( 
-            <>
-                <div style={{ marginLeft: '2rem' }}>
-                    <Button 
-                        className="buttonForm" 
-                        color="danger" 
-                        onClick={this.toggle}
-                    >   
-                        <h6 style={{ color: 'black' }}>Crear Nuevo Post</h6>
-                    </Button>
-                    <Modal 
-                        isOpen={this.state.modal} 
-                        toggle={this.toggle} 
-                        className="modal-form"
-                    >
-                        <ModalHeader toggle={this.toggle}>Formulario de creación de post</ModalHeader>
-                        <ModalBody>
-                            <FormItems  getData={this.getData}/>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button 
-                                className="button-modal"
-                                color="primary" 
-                                disabled={this.state.disabled} 
-                                onClick={this.createNewPost}
-                            >
-                                Crear
+    return (
+        <>
+            <div style={{ marginLeft: '2rem' }}>
+                <Button
+                    className="buttonForm"
+                    color="danger"
+                    onClick={toggle}
+                >
+                    <h6 style={{ color: 'black' }}>Crear Nuevo Post</h6>
+                </Button>
+                <Modal
+                    isOpen={modal}
+                    toggle={toggle}
+                    className="modal-form"
+                >
+                    <ModalHeader toggle={toggle}>Formulario de creación de post</ModalHeader>
+                    <ModalBody>
+                        <FormItems getData={getData} />
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            className="button-modal"
+                            color="primary"
+                            disabled={disabled}
+                            onClick={createNewPost}
+                        >
+                            Crear
                             </Button>
-                            <Button 
-                                className="button-modal"
-                                color="secondary" 
-                                onClick={this.toggle}
-                            >
-                                Cancelar
+                        <Button
+                            className="button-modal"
+                            color="secondary"
+                            onClick={toggle}
+                        >
+                            Cancelar
                             </Button>
-                        </ModalFooter>
-                    </Modal>
-                </div>
-                <div>
-                    <ToastContainer className="toast-container" />
-                </div>
-            </>
-        );
-    };
-};
- 
+                    </ModalFooter>
+                </Modal>
+            </div>
+            <div>
+                <ToastContainer className="toast-container" />
+            </div>
+        </>
+    );
+}
+
 export default FormCreateNewPost;
+  
+
+    

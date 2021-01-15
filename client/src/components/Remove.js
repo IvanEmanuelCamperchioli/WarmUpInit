@@ -8,8 +8,8 @@ const Remove = props => {
 
     useEffect(() => {
         props.match.params.id !== undefined
-            && alertswal(props.match.params.id)
-    }, [])
+        && alertswal(props.match.params.id)
+    })
 
     const alertswal = id => {
         swal({

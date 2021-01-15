@@ -13,12 +13,15 @@ const Details = props => {
     const [tooltipOpen, setTooltipOpen] = useState(false)
     const [id, setId] = useState(0)
 
-    useEffect( async () => {
-        const idPost = props.match.params.id
-        const res = await getPostDetails(idPost, props)
-        setId(idPost)
-        setData(res.data)
-    }, [])
+    useEffect( () => {
+        async function fetchData() {
+            const idPost = props.match.params.id
+            const res = await getPostDetails(idPost, props)
+            setId(idPost)
+            setData(res.data)    
+        }
+        fetchData()
+    })
 
     const toggle = () => setTooltipOpen(!tooltipOpen);
 

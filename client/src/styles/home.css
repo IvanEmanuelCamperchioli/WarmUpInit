@@ -42,3 +42,8 @@
     box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.38) !important;
     transition: 0.25s;
 }
+
+.i-text {
+    color: rgb(68, 207, 135);
+    text-decoration: underline;
+}

@@ -10,23 +10,23 @@ const Edit = props => {
 
     const[id, setId] = useState('')
     const[modal, setModal] = useState(false)
-    const[post, setPost] = useState({
-        title: '',
-        content: ''
-    })
+    // const[post, setPost] = useState({
+    //     title: '',
+    //     content: ''
+    // })
 
 
     useEffect(() => {
         const idPost = props.match.params.id
         setId(idPost)
-    }, []);
+    }, [props.match.params.id]);
 
     const getData = e => {
-        const name = e.target.name
-        const value = e.target.value
-        setPost({
-            [name]: value
-        });
+    //     const name = e.target.name
+    //     const value = e.target.value
+    //      setPost({
+    //          [name]: value
+    //      });
     }
 
     const toggle = () => setModal(!modal)
