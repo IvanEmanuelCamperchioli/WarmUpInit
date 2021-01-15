@@ -6,6 +6,7 @@ import axios from 'axios';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormItems from './FormItems';
+import '../styles/home.css'
 
 
 class FormCreateNewPost extends React.Component {
@@ -67,7 +68,6 @@ class FormCreateNewPost extends React.Component {
                         title: '', 
                         content: ''
                     });
-                    this.props.getPosts()
                 }  
             })
             .catch(error => {
@@ -94,7 +94,7 @@ class FormCreateNewPost extends React.Component {
                         color="danger" 
                         onClick={this.toggle}
                     >   
-                        <h6>Crear Nuevo Post</h6>
+                        <h6 style={{ color: 'black' }}>Crear Nuevo Post</h6>
                     </Button>
                     <Modal 
                         isOpen={this.state.modal} 

@@ -26,7 +26,6 @@ const CardDetails = props => {
                                 </div>
                                 <div className="div-card-buttons">
                                     <NavLink to={`/edit/${props.id}`}><Button>Editar</Button></NavLink>
-                                    <Button>Eliminar</Button>
                                 </div>
                             </>
                     }

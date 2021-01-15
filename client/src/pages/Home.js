@@ -1,41 +1,32 @@
-import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import List from '../components/List';
 import { ListGroup } from 'reactstrap';
 import '../styles/home.css'
 import FormCreateNewPost from '../components/FormCreateNewPost';
+import getPosts from '../services/get'
 
-class Home extends React.Component {
+const Home = () => {
 
-    state = { 
-        posts: []
-    }
+    const[posts, setPosts] = useState([])
 
-    componentDidMount() {
-        this.getPosts()
-    }
+    useEffect( async () => {
+        const res = await getPosts()
+        setPosts(res.data)
+    }, [])
 
-    getPosts = async () => {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        this.setState({ posts: response.data })
-    }
-
-    render() { 
-
-        return ( 
+    return ( 
             <>
-            <div className="div-sup-home">
-                <FormCreateNewPost getPosts={this.getPosts} className="form-NewPost" />
-            </div>
-            <ListGroup className="list">
-                {   this.state.posts.length === 0
-                    ? <p>Cargando posts...</p>
-                    : <List posts={this.state.posts} />
-                }
-            </ListGroup>
+                <div className="div-sup-home">
+                    <FormCreateNewPost getPosts={getPosts} className="form-NewPost" />
+                </div>
+                <ListGroup className="list">
+                    {   posts.length === 0
+                        ? <h4 style={{ textAlign: 'center' }}>Cargando posts...</h4>
+                        : <List posts={posts} />
+                    }
+                </ListGroup>
             </>
-         );
-    }
+     );
 }
  
 export default Home;

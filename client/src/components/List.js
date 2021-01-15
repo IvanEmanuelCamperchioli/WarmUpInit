@@ -6,17 +6,22 @@ import '../styles/details.css';
 const List = props => {
    
     return ( 
+
         props.posts.map( post => {
+
             return (
                 <div>
                     <ListGroupItem className="ListContainer">
                         <p>{post.title}</p> 
-                        <NavLink to={`/details/${post.id}`} ><Button>Detalles</Button></NavLink>
+                        <div>
+                            <NavLink to={`/details/${post.id}`} ><Button>Detalles</Button></NavLink>
+                            <NavLink to={`/remove/${post.id}`} ><Button>Eliminar</Button></NavLink>
+                        </div>
                     </ListGroupItem>
                 </div>
             )
         })
     );
 }
- 
+
 export default List;

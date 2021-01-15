@@ -23,4 +23,22 @@
     margin-top: 1vh;
     display: flex;
     justify-content: space-between;
+    box-shadow: 1px 1px 11px rgba(0, 0, 0, 0.753);
+}
+
+.buttonForm {
+    text-transform: uppercase;
+    background-color: rgb(157, 225, 191) !important;
+    border: none !important;
+    margin: 2vh 0 2vh 0;
+}
+
+.buttonForm:focus {
+    box-shadow: none !important;
+}
+
+.buttonForm:hover {
+    background-color: rgb(68, 207, 135) !important;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.38) !important;
+    transition: 0.25s;
 }

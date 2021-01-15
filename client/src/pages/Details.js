@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import CardDetails from '../components/CardDetails';
 import image from '../images/post-image.png'
@@ -7,71 +7,46 @@ import { Tooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
+import getPostDetails from '../services/getById'
 
-class Details extends React.Component {
+const Details = props => {
 
-    state = {
-        data: [],
-        tooltipOpen: false,
-        id: 0
-    }
+    const [data, setData] = useState([])
+    const [tooltipOpen, setTooltipOpen] = useState(false)
+    const [id, setId] = useState(0)
 
-    componentDidMount() {
-        const idPost = this.props.match.params.id
-        this.getPostDetails(idPost)
-        this.setState({ id: idPost })
-    }
+    useEffect( async () => {
+        const idPost = props.match.params.id
+        const res = await getPostDetails(idPost, props)
+        setId(idPost)
+        setData(res.data)
+    }, [])
 
-    getPostDetails = async id => {
-        await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .then( res => {
-            if(res.status === 200) {
-                const data = res.data
-                this.setState({ data })
-            }
-        })
-        .catch( err => {
-            swal({
-                title: "Ocurrió un error al intentar mostrar los detalles",
-                icon: "error",
-                button: "Entendido",
-            });
-            err && this.props.history.push("/")
-        })
-    }
+    const toggle = () => setTooltipOpen(!tooltipOpen);
 
-    getData = data => {
-        this.setState({ data: data })
-    }
-
-    toggle = () => this.setState({ tooltipOpen: !this.state.tooltipOpen });
-
-    render() {
-
-        return ( 
-            <div className="img-details" style={{ backgroundImage: `url(${image})`}}>
-                <CardDetails 
-                    data={this.state.data} 
-                    id={this.state.id} 
+    return (
+        <div className="img-details" style={{ backgroundImage: `url(${image})` }}>
+            <CardDetails
+                data={data}
+                id={id}
+            />
+            <NavLink to="/">
+                <FontAwesomeIcon
+                    id="Tooltip"
+                    className="iconArrow"
+                    icon={faArrowAltCircleLeft}
                 />
-                <NavLink to="/">
-                    <FontAwesomeIcon 
-                        id="Tooltip" 
-                        className="iconArrow" 
-                        icon={faArrowAltCircleLeft} 
-                    />
-                </NavLink>
-                <Tooltip 
-                    placement="bottom" 
-                    isOpen={this.state.tooltipOpen} 
-                    target="Tooltip" 
-                    toggle={this.toggle}
-                >
-                    Volver al listado
+            </NavLink>
+            <Tooltip
+                placement="bottom"
+                isOpen={tooltipOpen}
+                target="Tooltip"
+                toggle={toggle}
+            >
+                Volver al listado
                 </Tooltip>
-            </div>
-         );
-    }
+        </div>
+    );
 }
- 
+
 export default Details;
