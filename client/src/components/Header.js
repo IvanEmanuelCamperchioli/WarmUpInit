@@ -8,7 +8,7 @@ const Header = () => {
             <div className="header">
                 <h1 className="logo">Inicio | Listado de posts</h1>
                 <div className="header-right">
-                    <NavLink className="menu" to="/" >Home</NavLink>
+                    <NavLink className="menu" to="/" >Inicio</NavLink>
                     <NavLink className="menu" to="/edit" >Editar Post</NavLink>
                 </div>
             </div>

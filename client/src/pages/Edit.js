@@ -59,10 +59,10 @@ const Edit = props => {
         props.history.push(`/details/${id}/${title}/${body}`);
     };
 
-    const flag = () => {
-        swal("El post", "se ha modificado", "success");
-        props.history.push("/");
-    };
+    // const flag = () => {
+    //     swal("El post", "se ha modificado", "success");
+    //     props.history.push("/");
+    // };
 
     return (
         <div className="div-main-edit" style={{ backgroundImage: `url(${image})` }}>
@@ -89,8 +89,8 @@ const Edit = props => {
                             <Button
                             className="edit-button"
                             color="primary"
-                            disabled={disabled}
-                            onClick={() => flag()}
+                            disabled='true'
+                            // onClick={() => flag()}
                             >
                                 Editar
                             </Button>
