@@ -22,13 +22,9 @@
         font-size: 15px;
     }
     .swal-button.swal-button--cancel {
-        /* height: 3.7rem;
-        width: 11rem; */
         font-size: 12px;
     }
     .swal-button.swal-button--confirm.swal-button--danger {
         font-size: 10px;
-        /* height: 3rem;
-        width: 7.9rem; */
-    }
+}
 }

@@ -30,6 +30,6 @@ const FormEditSinceDetails = props => {
             </FormGroup>
         </>
     );
-}
+};
 
 export default FormEditSinceDetails;

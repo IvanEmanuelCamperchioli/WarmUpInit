@@ -14,7 +14,7 @@ const Home = () => {
             setPosts(res.data)    
         }
         fetchData()
-    }, [])
+    }, []);
 
 
     return ( 
@@ -30,6 +30,6 @@ const Home = () => {
                 </ListGroup>
             </>
      );
-}
+};
  
 export default Home;

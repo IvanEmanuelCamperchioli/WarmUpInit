@@ -9,7 +9,7 @@ const Remove = props => {
     useEffect(() => {
         props.match.params.id !== undefined
         && alertswal(props.match.params.id)
-    })
+    });
 
     const alertswal = id => {
         swal({
@@ -31,12 +31,12 @@ const Remove = props => {
                 };
                 props.history.push("/")
             });
-    }
+    };
 
     return (
         <div className="remove-img" style={{ backgroundImage: `url(${image})` }}>
         </div>
     );
-}
+};
 
 export default Remove;

@@ -7,7 +7,7 @@ const FormItems = props => {
         const name = e.target.name
         const value = e.target.value
         props.getData(name, value)
-    }
+    };
 
     return (
         <Form>
@@ -31,6 +31,6 @@ const FormItems = props => {
             </FormGroup>
         </Form>
     );
-}
+};
 
 export default FormItems;

@@ -33,6 +33,6 @@ const FormEditSinceHeader = props => {
             </FormGroup>
         </>
     );
-}
+};
 
 export default FormEditSinceHeader;

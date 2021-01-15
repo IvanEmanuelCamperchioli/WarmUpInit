@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import CardDetails from '../components/CardDetails';
 import image from '../images/post-image.png'
 import { Tooltip } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import getPostDetails from '../services/getById'
+import getPostDetails from '../services/getById';
 
 const Details = props => {
 
@@ -26,9 +26,9 @@ const Details = props => {
             setTitle(title)
             setBody(body)
             setData(res.data)    
-        }
-        fetchData()
-    })
+        };
+        fetchData();
+    });
 
     const toggle = () => setTooltipOpen(!tooltipOpen);
 
@@ -57,6 +57,6 @@ const Details = props => {
                 </Tooltip>
         </div>
     );
-}
+};
 
 export default Details;

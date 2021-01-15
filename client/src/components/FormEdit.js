@@ -15,9 +15,9 @@ const FormEdit = props => {
                 const res = await getPosts()
                 setPosts(res.data)
             }
-        }
-        fetchData()
-    })
+        };
+        fetchData();
+    });
 
     return (
             <Form className="formEdit">
@@ -39,6 +39,6 @@ const FormEdit = props => {
                 
             </Form>
     );
-}
+};
 
 export default FormEdit;

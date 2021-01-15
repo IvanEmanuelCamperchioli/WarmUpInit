@@ -5,8 +5,8 @@ import {
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormItems from './FormItems';
-import '../styles/home.css'
-import toPost from '../services/post'
+import '../styles/home.css';
+import toPost from '../services/post';
 
 const FormCreateNewPost = () => {
 
@@ -18,7 +18,7 @@ const FormCreateNewPost = () => {
     const toggle = () => {
         setModal(!modal)
         setDisabled(false)
-    }
+    };
 
     const getData = (key, eventValue) => {
         const property = key
@@ -26,7 +26,7 @@ const FormCreateNewPost = () => {
         if(property === 'title') {
             setTitle(value)
         } else setContent(value)
-    }
+    };
 
     const notify = () => {
         toast.dark(
@@ -40,7 +40,7 @@ const FormCreateNewPost = () => {
                 delay: 500
             }
         );
-    }
+    };
 
     const createNewPost = async e => {
         e.preventDefault()
@@ -74,7 +74,7 @@ const FormCreateNewPost = () => {
                     toggle()
                 });
         };
-    }
+    };
 
 
     return (
@@ -120,7 +120,7 @@ const FormCreateNewPost = () => {
             </div>
         </>
     );
-}
+};
 
 export default FormCreateNewPost;
   

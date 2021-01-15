@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import image from '../images/backgroundEdit.jpg';
 import { Button } from 'reactstrap';
 import swal from 'sweetalert';
-import 'react-toastify/dist/ReactToastify.css';
-import '../styles/edit.css'
 import editPost from '../services/put';
 import FormEdit from '../components/FormEdit';
+import 'react-toastify/dist/ReactToastify.css';
+import '../styles/edit.css';
 
 const Edit = props => {
 
@@ -30,18 +30,18 @@ const Edit = props => {
         if (key === 'title') {
             setTitle(value)
         } else setBody(value)
-    }
+    };
 
     const notify = () => {
-        setDisabled(true)
+        setDisabled(true);
         swal("Accion completada", "Post modificado correctamente", "success");
-        props.history.push(`/details/${id}/${title}/${body}`)
-    }
+        props.history.push(`/details/${id}/${title}/${body}`);
+    };
 
     const err = () => {
         swal("Ocurrió un error", "no se pudo concretar la modificación", "error");
-        props.history.push(`/details/${id}/${title}/${body}`)
-    } 
+        props.history.push(`/details/${id}/${title}/${body}`);
+    };
 
     const sendModification = async (id, title, body) => {
         await editPost(id, title, body)
@@ -52,19 +52,17 @@ const Edit = props => {
         })
         .catch(() => {
             err()
-        })
-    }
+        });
+    };
 
     const cancel = () => {
-        props.history.push(`/details/${id}/${title}/${body}`)
-    }
+        props.history.push(`/details/${id}/${title}/${body}`);
+    };
 
     const flag = () => {
         swal("El post", "se ha modificado", "success");
-        props.history.push("/")
-    }
-
-    console.log(id)
+        props.history.push("/");
+    };
 
     return (
         <div className="div-main-edit" style={{ backgroundImage: `url(${image})` }}>
@@ -109,6 +107,6 @@ const Edit = props => {
         </div>
 
     );
-}
+};
 
 export default Edit;

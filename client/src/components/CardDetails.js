@@ -15,7 +15,7 @@ const CardDetails = props => {
             <Card>
                 <CardBody>
                     {props.data.length === 0
-                        ? <Spinner color="info" className="spinner-card" />
+                        ? <Spinner color="info" />
                         : 
                             <>
                                 <div className="div-card-details">
@@ -35,6 +35,6 @@ const CardDetails = props => {
             </Card>
       </div>
     );
-}
+};
  
 export default CardDetails;
