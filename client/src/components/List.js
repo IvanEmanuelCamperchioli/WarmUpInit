@@ -14,7 +14,7 @@ const List = props => {
                     <ListGroupItem className="ListContainer">
                         <p>{post.title}</p> 
                         <div>
-                            <NavLink to={`/details/${post.id}`} ><Button>Detalles</Button></NavLink>
+                            <NavLink to={`/details/${post.id}/${post.title}/${post.body}`} ><Button>Detalles</Button></NavLink>
                             <NavLink to={`/remove/${post.id}`} ><Button>Eliminar</Button></NavLink>
                         </div>
                     </ListGroupItem>

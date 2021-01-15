@@ -9,15 +9,22 @@ import getPostDetails from '../services/getById'
 
 const Details = props => {
 
-    const [data, setData] = useState([])
-    const [tooltipOpen, setTooltipOpen] = useState(false)
-    const [id, setId] = useState(0)
+    const[data, setData] = useState([])
+    const[tooltipOpen, setTooltipOpen] = useState(false)
+    const[id, setId] = useState(0)
+    const[title, setTitle] = useState('')
+    const[body, setBody] = useState('')
+
 
     useEffect( () => {
         async function fetchData() {
+            const title = props.match.params.title
+            const body = props.match.params.body
             const idPost = props.match.params.id
             const res = await getPostDetails(idPost, props)
             setId(idPost)
+            setTitle(title)
+            setBody(body)
             setData(res.data)    
         }
         fetchData()
@@ -30,6 +37,8 @@ const Details = props => {
             <CardDetails
                 data={data}
                 id={id}
+                title={title}
+                body={body}
             />
             <NavLink to="/">
                 <FontAwesomeIcon

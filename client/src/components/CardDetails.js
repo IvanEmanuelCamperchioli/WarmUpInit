@@ -25,7 +25,7 @@ const CardDetails = props => {
                                     <CardText>{props.data.body}</CardText>
                                 </div>
                                 <div className="div-card-buttons">
-                                    <NavLink to={`/edit/${props.id}`}><Button>Editar</Button></NavLink>
+                                    <NavLink to={`/edit/${props.id}/${props.title}/${props.body}`}><Button>Editar</Button></NavLink>
                                 </div>
                             </>
                     }

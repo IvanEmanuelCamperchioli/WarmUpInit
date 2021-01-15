@@ -12,8 +12,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/details/:id" component={Details} />
-          <Route path="/edit/:id" component={Edit} />
+          <Route path="/details/:id/:title/:body" component={Details} />
+          <Route path="/edit/:id/:title/:body" component={Edit} />
           <Route path="/edit" component={Edit} />
           <Route path="/remove/:id" component={Remove} />
           <Redirect to="/" />
