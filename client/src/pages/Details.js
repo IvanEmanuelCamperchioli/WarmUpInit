@@ -1,6 +1,4 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import swal from 'sweetalert';
 import CardDetails from '../components/CardDetails';
 import image from '../images/post-image.png'
 import { Tooltip } from 'reactstrap';
