@@ -1,50 +1,43 @@
-import React from 'react';
-import {
-    FormGroup, Label, Input, Form
-} from 'reactstrap';
-
+import React, { useEffect, useState } from 'react';
+import { Form } from 'reactstrap';
+import '../styles/edit.css';
+import getPosts from '../services/get';
+import FormEditSinceHeader from './FormEditSinceHeader';
+import FormEditSinceDetails from './FormEditSinceDetails';
 
 const FormEdit = props => {
 
-    return (
-        <Form>
-            {
-                props.id === undefined
-                    ?
-                    <FormGroup>
-                        <Label for="type" className="label-form">Tipo</Label>
-                        <Input
-                            type="select"
-                            name="type"
-                            onChange={props.modify}
-                        >
-                            <option value="">título</option>
-                            <option name="Ingreso">Ingreso</option>
-                        </Input>
-                    </FormGroup>
-                    :
-                    <FormGroup>
-                        <Label for="title" className="label-form">Título</Label>
-                        <Input
-                            type="text"
-                            name="title"
-                            autoComplete="off"
-                            defaultValue={props.title}
-                            onChange={props.modify}
-                        />
-                    </FormGroup>
+    const[posts, setPosts] = useState([])
+
+    useEffect(() => {
+        async function fetchData() {
+            if(props.id === undefined) {
+                const res = await getPosts()
+                setPosts(res.data)
             }
-            <FormGroup>
-                <Label for="body" className="label-form">Contenido</Label>
-                <Input
-                    type="text"
-                    name="body"
-                    autoComplete="off"
-                    defaultValue={props.body}
-                    onChange={props.modify}
-                />
-            </FormGroup>
-        </Form>
+        }
+        fetchData()
+    })
+
+    return (
+            <Form className="formEdit">
+                {
+                    props.id === undefined
+                        ?
+                        <FormEditSinceHeader 
+                            modify={props.modify} 
+                            posts={posts} 
+                        />
+                        :
+                        <FormEditSinceDetails 
+                            title={props.title}
+                            body={props.body}
+                            modify={props.modify}
+                        />
+                        
+                }
+                
+            </Form>
     );
 }
 

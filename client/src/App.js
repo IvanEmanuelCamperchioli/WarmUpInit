@@ -15,7 +15,7 @@ function App() {
           <Route path="/details/:id/:title/:body" component={Details} />
           <Route path="/edit/:id/:title/:body" component={Edit} />
           <Route path="/edit" component={Edit} />
-          <Route path="/remove/:id" component={Remove} />
+          <Route path="/remove/:id/:title" component={Remove} />
           <Redirect to="/" />
         </Switch>
     </BrowserRouter>

@@ -13,7 +13,7 @@ const Remove = props => {
 
     const alertswal = id => {
         swal({
-            title: "¿Eliminar el post?",
+            title: `¿Eliminar el post: ${props.match.params.title}?`,
             text: "No podrá recuperarlo una ves realizada la acción!",
             icon: "warning",
             buttons: true,

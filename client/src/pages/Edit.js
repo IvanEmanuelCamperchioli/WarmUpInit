@@ -61,25 +61,31 @@ const Edit = props => {
 
     return (
         <div className="div-main-edit" style={{ backgroundImage: `url(${image})` }}>
-            <FormEdit 
-                id={id} 
-                title={title} 
-                body={body}
-                modify={modify}
-            />
-            <Button
-                color="primary"
-                disabled={disabled}
-                onClick={() => sendModification(id, title, body)}
-            >
-                Editar
-            </Button>
-            <Button
-                color="secondary"
-                onClick={cancel}
-            >
-                Cancelar
-            </Button>
+            <div className="div-formEdit">
+                <FormEdit 
+                    id={id} 
+                    title={title} 
+                    body={body}
+                    modify={modify}
+                />
+                <div className="div-buttons">
+                    <Button
+                        className="edit-button"
+                        color="primary"
+                        disabled={disabled}
+                        onClick={() => sendModification(id, title, body)}
+                    >
+                        Editar
+                    </Button>
+                    <Button
+                        className="cancel-button"
+                        color="secondary"
+                        onClick={cancel}
+                    >
+                        Cancelar
+                    </Button>
+                </div>
+            </div>
         </div>
 
     );

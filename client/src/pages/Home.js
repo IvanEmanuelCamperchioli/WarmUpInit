@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import List from '../components/List';
 import { ListGroup } from 'reactstrap';
 import FormCreateNewPost from '../components/FormCreateNewPost';
-import getPosts from '../services/get'
-import '../styles/home.css'
+import getPosts from '../services/get';
 
 const Home = () => {
 

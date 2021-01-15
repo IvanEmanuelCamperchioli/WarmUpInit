@@ -8,14 +8,13 @@ const List = props => {
     return ( 
 
         props.posts.map( post => {
-
             return (
                 <div>
                     <ListGroupItem className="ListContainer">
                         <p>{post.title}</p> 
-                        <div>
+                        <div className="buttons">
                             <NavLink to={`/details/${post.id}/${post.title}/${post.body}`} ><Button>Detalles</Button></NavLink>
-                            <NavLink to={`/remove/${post.id}`} ><Button>Eliminar</Button></NavLink>
+                            <NavLink to={`/remove/${post.id}/${post.title}`} ><Button>Eliminar</Button></NavLink>
                         </div>
                     </ListGroupItem>
                 </div>

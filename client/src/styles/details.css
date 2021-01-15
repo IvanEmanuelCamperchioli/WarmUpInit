@@ -55,3 +55,9 @@
 .div-card-details .card-title {
     text-align: left;
 }
+
+.buttons {
+    display: flex;
+    width: 15%;
+    justify-content: space-between;
+}
