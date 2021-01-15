@@ -7,3 +7,28 @@
 .swal {
     background-color: rgba(255, 255, 255, 0.199);
 }
+
+@media only screen and (max-width: 550px){
+
+    .swal-modal {
+        height: auto;
+        width: 80%;
+        flex-wrap: nowrap;
+    }
+    .swal-title {
+        font-size: 20px;
+    }
+    .swal-text {
+        font-size: 15px;
+    }
+    .swal-button.swal-button--cancel {
+        /* height: 3.7rem;
+        width: 11rem; */
+        font-size: 12px;
+    }
+    .swal-button.swal-button--confirm.swal-button--danger {
+        font-size: 10px;
+        /* height: 3rem;
+        width: 7.9rem; */
+    }
+}

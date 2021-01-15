@@ -41,3 +41,9 @@
     color: #000;
     font-size: 1.25rem;
 }
+
+@media only screen and (max-device-width: 700px){
+    .div-formEdit {
+        width: 85%;
+    }
+}

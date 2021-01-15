@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
   
 .header .menu {
@@ -33,12 +34,12 @@
     transition: 0.35s;
 }
 
-@media only screen and (max-device-width: 700px){
+@media only screen and (max-device-width: 600px){
     .header {
-        height: 11vh;
+        flex-direction: column;
     }
     .header .logo {
-        font-size: 40px;
+        font-size: 35px;
     }
     .header-right .menu {
         font-size: 25px;
@@ -55,7 +56,7 @@
 
 @media only screen and (max-device-width: 400px){
     .header .logo {
-        font-size: 45px;
+        font-size: 30px;
     }
     .header-right .menu {
         font-size: 30px;

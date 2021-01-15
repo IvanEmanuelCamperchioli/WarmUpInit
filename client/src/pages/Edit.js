@@ -59,6 +59,13 @@ const Edit = props => {
         props.history.push(`/details/${id}/${title}/${body}`)
     }
 
+    const flag = () => {
+        swal("El post", "se ha modificado", "success");
+        props.history.push("/")
+    }
+
+    console.log(id)
+
     return (
         <div className="div-main-edit" style={{ backgroundImage: `url(${image})` }}>
             <div className="div-formEdit">
@@ -69,14 +76,27 @@ const Edit = props => {
                     modify={modify}
                 />
                 <div className="div-buttons">
-                    <Button
-                        className="edit-button"
-                        color="primary"
-                        disabled={disabled}
-                        onClick={() => sendModification(id, title, body)}
-                    >
-                        Editar
-                    </Button>
+                    {
+                        id !== undefined
+                            ?
+                            <Button
+                            className="edit-button"
+                            color="primary"
+                            disabled={disabled}
+                            onClick={() => sendModification(id, title, body)}
+                            >
+                                Editar
+                            </Button>
+                            :
+                            <Button
+                            className="edit-button"
+                            color="primary"
+                            disabled={disabled}
+                            onClick={() => flag()}
+                            >
+                                Editar
+                            </Button>
+                    }
                     <Button
                         className="cancel-button"
                         color="secondary"
